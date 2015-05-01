@@ -1,0 +1,47 @@
+$! Kessel
+/\/ MIU System Theorem Generator Program, Kessel 0.0.1
+/\/ Author: Michael Phillips \/\ 
+all: func main {&end},  
+s: axiom = "MI"&
+/\/ Rules
+func rule_one {$, s: f},
+     if f.ends_with("I") {#}, 
+	 return f += "U"
+&#$
+
+func rule_two {$, s: f},
+	 return f = f + f[1:f.length]
+&$
+
+func rule_three {$, s: f}, 
+	if "III" in f {#}, 
+	return f.replace("III", "U")
+&#$
+
+func rule_four {$, s: f}, 
+     if "UU" in f {#},
+	 return f.replace("UU", "")
+&#$
+
+print("MIU Theorem Generator") 
+b: loop = True&
+while loop = True {$}, 
+	print("Which rules would you like to apply to the axiom 'MI'?")
+	command = input.next("please type numbers 1-4): ")&
+	for each in command {#}, 
+	    if current = "1" {#}, 
+		axiom = rule_one(axiom)&#
+		if current = "2" {#}, 
+		axiom = rule_two(axiom)&#
+		if current = "3" {#}, 
+		axiom = rule_three(axiom)&#
+		if current = "4" {#}, 
+		axiom = rule_four(axiom)&#
+	#
+	print("Theorem: ", axiom) 
+	command = input.next("again? [y/n: ") 
+	if command.ignore_case() = "y" {#}, 
+		loop = True&
+	else::loop = False&#
+$
+&end. /\/ end = END
